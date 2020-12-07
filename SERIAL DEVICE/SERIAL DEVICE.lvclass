@@ -95,7 +95,7 @@
 			<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">true</Property>
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
 			<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
-			<Property Name="NI.ClassItem.State" Type="Int">1074278912</Property>
+			<Property Name="NI.ClassItem.State" Type="Int">1107821056</Property>
 		</Item>
 		<Item Name="WRITE PIN COM.vi" Type="VI" URL="../WRITE PIN COM.vi">
 			<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">'1#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!$2!!!!"Q!%!!!!&amp;5!$!!Z#762&amp;5S"&amp;7&amp;"&amp;1V2&amp;2!!!%%!Q`````Q&gt;$4UV"4E20!"J!-0````]226B125.5251A5E645%^/5U5!#U!&amp;!!6$15Z"4!!H!0%!!!!!!!!!!1J.35.34V-O9X2M!"2!-0````]'45F$5E^4!!"5!0!!$!!!!!%!!A!$!!!!!!!!!!!!!!!!!!1!"1)!!(A!!!!!!!!*!!!!$1M!!!E!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)!!!"#A!!!!!"!!9!!!!!</Property>
@@ -173,7 +173,7 @@
 			<Property Name="NI.ClassItem.IsStaticMethod" Type="Bool">false</Property>
 			<Property Name="NI.ClassItem.MethodScope" Type="UInt">1</Property>
 			<Property Name="NI.ClassItem.Priority" Type="Int">1</Property>
-			<Property Name="NI.ClassItem.State" Type="Int">1074541072</Property>
+			<Property Name="NI.ClassItem.State" Type="Int">1342710288</Property>
 		</Item>
 		<Item Name="SEND WRITE PIN.vi" Type="VI" URL="../SEND WRITE PIN.vi">
 			<Property Name="NI.ClassItem.ConnectorPane" Type="Bin">'1#!!!!!!!)!"1!&amp;!!!-!%!!!@````]!!!!"!!%!!!&amp;!!!!!#Q!-1#%'=X2B&gt;(6T!!!,1!-!"'.P:'5!!""!-0````]'=W^V=G.F!!!71&amp;!!!Q!!!!%!!AFF=H*P=C"P&gt;81!"!!!!"2!-0````],=G6B:#"C&gt;7:G:8)!-E"Q!"Y!!"=65U6335&amp;-)%2&amp;6EF$23ZM&gt;G.M98.T!"&amp;426**15QA2%6735.&amp;)'^V&gt;!!A1&amp;!!!Q!!!!%!!B.F=H*P=C"J&lt;C!I&lt;G]A:8*S&lt;X)J!!N!"1!&amp;1U&amp;/15Q!-E"Q!"Y!!"=65U6335&amp;-)%2&amp;6EF$23ZM&gt;G.M98.T!""426**15QA2%6735.&amp;)'FO!!"5!0!!$!!$!!1!"1!'!!1!"!!%!!1!"Q!%!!A!#1-!!(A!!!U)!!!!!!!!#1!!!)U,!!!!!!!!!!!!!!!!!!!!!!!!#A!!!!!!!!!)!!!!EA!!!!!"!!I!!!!!</Property>
