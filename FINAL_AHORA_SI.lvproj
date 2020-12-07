@@ -20,7 +20,7 @@
 		<Item Name="COMANDOS.ctl" Type="VI" URL="../COMANDOS.ctl"/>
 		<Item Name="MICROS.ctl" Type="VI" URL="../MICROS.ctl"/>
 		<Item Name="ARDUINO.lvclass" Type="LVClass" URL="../ARDUINO/ARDUINO.lvclass"/>
-		<Item Name="NXP.lvclass" Type="LVClass" URL="../NXP/NXP.lvclass"/>
+		<Item Name="CYPRESS.lvclass" Type="LVClass" URL="../NXP/CYPRESS.lvclass"/>
 		<Item Name="SERIAL DEVICE.lvclass" Type="LVClass" URL="../SERIAL DEVICE/SERIAL DEVICE.lvclass"/>
 		<Item Name="SIMULADO.lvclass" Type="LVClass" URL="../SIMULADO/SIMULADO.lvclass"/>
 		<Item Name="Dependencies" Type="Dependencies">
