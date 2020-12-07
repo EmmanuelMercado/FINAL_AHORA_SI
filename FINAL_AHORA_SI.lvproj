@@ -17,6 +17,9 @@
 		<Item Name="TESTERS" Type="Folder">
 			<Item Name="Test MAIN API.vi" Type="VI" URL="../Libraries/MAIN/Test MAIN API.vi"/>
 		</Item>
+		<Item Name="SUBVIS" Type="Folder">
+			<Item Name="DECODIFICAR ESTADO PIN.vi" Type="VI" URL="../SUBVIS/DECODIFICAR ESTADO PIN.vi"/>
+		</Item>
 		<Item Name="COMANDOS.ctl" Type="VI" URL="../COMANDOS.ctl"/>
 		<Item Name="MICROS.ctl" Type="VI" URL="../MICROS.ctl"/>
 		<Item Name="ARDUINO.lvclass" Type="LVClass" URL="../ARDUINO/ARDUINO.lvclass"/>
