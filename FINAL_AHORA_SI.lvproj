@@ -21,6 +21,8 @@
 			<Item Name="DECODIFICAR ESTADO PIN.vi" Type="VI" URL="../SUBVIS/DECODIFICAR ESTADO PIN.vi"/>
 			<Item Name="DECODIFICAR ESTADO PUERTO.vi" Type="VI" URL="../SUBVIS/DECODIFICAR ESTADO PUERTO.vi"/>
 			<Item Name="CONCATENAR NUMEROS.vi" Type="VI" URL="../SUBVIS/CONCATENAR NUMEROS.vi"/>
+			<Item Name="DECODIFICAR ESTADO LED.vi" Type="VI" URL="../SUBVIS/DECODIFICAR ESTADO LED.vi"/>
+			<Item Name="ARRAY TO NUMBER.vi" Type="VI" URL="../SUBVIS/ARRAY TO NUMBER.vi"/>
 		</Item>
 		<Item Name="COMANDOS.ctl" Type="VI" URL="../COMANDOS.ctl"/>
 		<Item Name="MICROS.ctl" Type="VI" URL="../MICROS.ctl"/>
