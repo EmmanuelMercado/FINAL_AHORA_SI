@@ -26,6 +26,8 @@
 				<Item Name="READ PORT (Reply Payload)--cluster.ctl" Type="VI" URL="../READ PORT (Reply Payload)--cluster.ctl"/>
 				<Item Name="WRITE PIN Argument--cluster.ctl" Type="VI" URL="../WRITE PIN Argument--cluster.ctl"/>
 				<Item Name="WRITE PIN (Reply Payload)--cluster.ctl" Type="VI" URL="../WRITE PIN (Reply Payload)--cluster.ctl"/>
+				<Item Name="WRITE PORT Argument--cluster.ctl" Type="VI" URL="../WRITE PORT Argument--cluster.ctl"/>
+				<Item Name="WRITE PORT (Reply Payload)--cluster.ctl" Type="VI" URL="../WRITE PORT (Reply Payload)--cluster.ctl"/>
 			</Item>
 			<Item Name="Broadcast" Type="Folder">
 				<Item Name="Did Init Argument--cluster.ctl" Type="VI" URL="../Did Init Argument--cluster.ctl"/>
@@ -42,6 +44,7 @@
 			<Item Name="READ PIN.vi" Type="VI" URL="../READ PIN.vi"/>
 			<Item Name="READ PORT.vi" Type="VI" URL="../READ PORT.vi"/>
 			<Item Name="WRITE PIN.vi" Type="VI" URL="../WRITE PIN.vi"/>
+			<Item Name="WRITE PORT.vi" Type="VI" URL="../WRITE PORT.vi"/>
 		</Item>
 		<Item Name="Start Module.vi" Type="VI" URL="../Start Module.vi"/>
 		<Item Name="Synchronize Module Events.vi" Type="VI" URL="../Synchronize Module Events.vi"/>
