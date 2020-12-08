@@ -26,7 +26,7 @@
 		</Item>
 		<Item Name="COMANDOS.ctl" Type="VI" URL="../COMANDOS.ctl"/>
 		<Item Name="MICROS.ctl" Type="VI" URL="../MICROS.ctl"/>
-		<Item Name="ARDUINO.lvclass" Type="LVClass" URL="../ARDUINO/ARDUINO.lvclass"/>
+		<Item Name="NXP.lvclass" Type="LVClass" URL="../ARDUINO/NXP.lvclass"/>
 		<Item Name="CYPRESS.lvclass" Type="LVClass" URL="../NXP/CYPRESS.lvclass"/>
 		<Item Name="SERIAL DEVICE.lvclass" Type="LVClass" URL="../SERIAL DEVICE/SERIAL DEVICE.lvclass"/>
 		<Item Name="SIMULADO.lvclass" Type="LVClass" URL="../SIMULADO/SIMULADO.lvclass"/>
@@ -98,7 +98,6 @@
 				<Item Name="Obtain Semaphore Reference.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/semaphor.llb/Obtain Semaphore Reference.vi"/>
 				<Item Name="Delacor_lib_QMH_Message Queue.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/Delacor/Delacor QMH/Libraries/Message Queue_class/Delacor_lib_QMH_Message Queue.lvclass"/>
 				<Item Name="Acquire Semaphore.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/semaphor.llb/Acquire Semaphore.vi"/>
-				<Item Name="LVPointTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVPointTypeDef.ctl"/>
 				<Item Name="Space Constant.vi" Type="VI" URL="/&lt;vilib&gt;/dlg_ctls.llb/Space Constant.vi"/>
 			</Item>
 		</Item>
