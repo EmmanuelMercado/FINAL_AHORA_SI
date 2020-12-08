@@ -1,0 +1,1104 @@
+= PROYECTO FINAL INSTRUMENTACIÓN VIRTUAL
+EMMANUEL MERCADO MURGUIA
+:doctype: book
+:toc: 
+:imagesdir: Images
+:sectnums: 
+:toclevels: 3
+:chapter-label: Section
+
+== Project description
+
+No description found (add content in project description)
+
+== Code component descriptions
+
+=== DQMH(R) modules
+
+This section describes DQMH(R) module responsibilities and relationships.
+
+==== Preamble
+
+A DQMH module is the main component of an architecture based on DQMH(R) framework. A DQMH module is used to implement a section of the application that has one responsibility.
+
+DQMH(R) framework defines two different type of DQMH module.  
+
+====
+*Singleton:*
+
+A Singleton DQMH module can have only one instance running at any given time.
+====
+
+====
+*Cloneable:*
+
+A Cloneable DQMH module can have one or multiple instances running in parallel.
+====
+
+DQMH(R) framework defines two different ways to carry data throughout the application and with both other DQMH modules and non-DQMH based code.
+
+====
+*Request events:*
+
+A request is a code that fires an event requesting the DQMH module to do something. Multiple locations in the code can send events to the DQMH module.
+
+Request events are many-to-one.
+
+Requests are usually named using imperative tense.
+====
+
+====
+*Broadcast events:*
+
+A broadcast is a code that fires an event broadcasting that the DQMH module did something. Multiple Event Structures can register to handle the Broadcast Events.
+
+Broadcast Events are one-to-many.
+
+Broadcasts are usually named using past tense or passive voice.
+====
+
+NOTE: Refer to the DQMH(R) framework official http://delacor.com/documentation/dqmh-html/[documentation] to find more details on how the framework works
+
+
+The following section gives you details on the project architecture relying on this framework.
+It gives you an overview of the modules' interaction and detailed information on each module.
+
+Graphs used in this section have the following legend:
+
+*Components:*
+
+
+[graphviz, format="png", align="center"]
+....
+digraph G477459 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"DQMH module / Lvlib"[color=black shape=component]
+"Vi"[color=skyblue shape=note]
+}
+....
+
+*Events:*
+
+[graphviz, format="png", align="center"]
+....
+digraph G100771 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+" "[color=white shape=box]
+"  "[color=white shape=box]
+"   "[color=white shape=box]
+"    "[color=white shape=box]
+" " -> "  " [label="Request to a DQMH module" dir=both color=forestgreen  arrowhead=normal arrowtail=none style=filled penwidth=1];
+"   " -> "    " [label="Broadcast from a DQMH module" dir=both color=goldenrod  arrowhead=normal arrowtail=none style=dashed penwidth=1];
+}
+....
+
+*Start and Stop module callers:*
+
+[graphviz, format="png", align="center"]
+....
+digraph G719955 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"Start Module
+caller"[color=black shape=component]
+"Start Module"[color=yellowgreen shape=note]
+"Start Module" -> "Start Module
+caller" [label="Called by" dir=both color=yellowgreen  arrowhead=odot arrowtail=inv style=filled penwidth=1];
+}
+....
+
+[graphviz, format="png", align="center"]
+....
+digraph G44621 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"Stop Module
+caller"[color=black shape=component]
+"Stop Module"[color=tomato shape=note]
+"Stop Module" -> "Stop Module
+caller" [label="Called by" dir=both color=tomato  arrowhead=odot arrowtail=inv style=dotted penwidth=1];
+}
+....
+
+
+==== Modules overview
+
+This project contains the following modules.
+
+.Modules list
+|===
+|Singleton|Cloneable
+
+|
+|<<MAIN.lvlib>>
+|===
+
+This graph represents the links between all DQMH modules.
+
+[graphviz, format="png", align="center"]
+....
+digraph G383154 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"MAIN"[color=black shape=component]
+"MAIN" -> "MAIN" [dir=both color=forestgreen  arrowhead=normal arrowtail=none style=filled penwidth=1];
+}
+....
+
+
+==== MAIN.lvlib
+
+*Type:* Cloneable
+
+*Responsibility*: No description found (add content in DQMH module lvlib description)
+
+===== Module Start/Stop calls
+
+[graphviz, format="png", align="center"]
+....
+digraph G361526 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"Start Module"[color=yellowgreen shape=note]
+"Test MAIN API"[color=skyblue shape=note]
+"Stop Module"[color=tomato shape=note]
+"MAIN"[color=black shape=component]
+"Start Module" -> "Test MAIN API" [dir=both color=yellowgreen  arrowhead=odot arrowtail=inv style=filled penwidth=1];
+"Stop Module" -> "MAIN" [dir=both color=tomato  arrowhead=odot arrowtail=inv style=dotted penwidth=1];
+"Stop Module" -> "Test MAIN API" [dir=both color=tomato  arrowhead=odot arrowtail=inv style=dotted penwidth=1];
+}
+....
+
+.Start and Stop module callers
+|===
+|Function|Callers
+
+|<<MAIN.lvlib:Start Module.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:Stop Module.vi>>
+|MAIN.lvlib:Handle Exit.vi +
+Test MAIN API.vi
+|===
+
+===== Module relationship
+
+[graphviz, format="png", align="center"]
+....
+digraph G357726 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"MAIN"[color=slateblue shape=component]
+"Test MAIN API"[color=skyblue shape=note]
+"Test MAIN API" -> "MAIN" [dir=both color=forestgreen  arrowhead=normal arrowtail=none style=filled penwidth=1];
+"MAIN" -> "MAIN" [dir=both color=forestgreen  arrowhead=normal arrowtail=none style=filled penwidth=1];
+"MAIN" -> "Test MAIN API" [label=" " dir=both color=goldenrod  arrowhead=normal arrowtail=none style=dashed penwidth=1];
+}
+....
+
+.Requests callers
+|===
+|Request Name|Callers
+
+|<<MAIN.lvlib:Show Panel.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:Hide Panel.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:Show Diagram.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:READ_ADC.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:READ PIN.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:READ PORT.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:WRITE PIN.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:WRITE PORT.vi>>
+|Test MAIN API.vi
+|===
+
+.Broadcasts Listeners
+|===
+|Broadcast Name|Listeners
+
+|<<MAIN.lvlib:Module Did Init.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:Status Updated.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:Error Reported.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:Module Did Stop.vi>>
+|Test MAIN API.vi
+
+|<<MAIN.lvlib:Update Module Execution Status.vi>>
+|Test MAIN API.vi
+|===
+
+.Used requests
+|===
+|Module|Broadcasts
+
+|--
+|--
+|===
+
+.Registered broadcast
+|===
+|Module|Broadcasts
+
+|--
+|--
+|===
+
+=== Libraries
+
+This section describes the libraries contained in the project.
+
+=== Classes
+
+This section describes the classes contained in the project.
+
+==== NXP.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== CYPRESS.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== SERIAL DEVICE.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== SIMULADO.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Delacor_lib_QMH_Cloneable Module Admin.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Delacor_lib_QMH_Module Admin.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Delacor_lib_QMH_Message Queue.lvclass
+
+No description found (add content in lvlib description)
+
+
+== VI descriptions
+
+=== DQMH(R) modules
+
+This section describes DQMH(R) modules events.
+
+==== MAIN.lvlib
+
+===== MAIN.lvlib:Start Module.vi
+
+*Event type:* Not a DQMH Event
+
+:imgpath: MAIN.lvlib_Start Module.vi.png
+image::{imgpath}[MAIN.lvlib:Start Module.vi]
+
+*Description:*
+++++
+Launches the Module Main.vi.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:Stop Module.vi
+
+*Event type:* Not a DQMH Event
+
+:imgpath: MAIN.lvlib_Stop Module.vi.png
+image::{imgpath}[MAIN.lvlib:Stop Module.vi]
+
+*Description:*
+++++
+Send the Stop request to the Module's Main.vi.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:Show Panel.vi
+
+*Event type:* Request
+
+:imgpath: MAIN.lvlib_Show Panel.vi.png
+image::{imgpath}[MAIN.lvlib:Show Panel.vi]
+
+*Description:*
+++++
+Send the Show Panel request to the Module's Main.vi.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:Hide Panel.vi
+
+*Event type:* Request
+
+:imgpath: MAIN.lvlib_Hide Panel.vi.png
+image::{imgpath}[MAIN.lvlib:Hide Panel.vi]
+
+*Description:*
+++++
+Send the Hide Panel request to the Module's Main.vi.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:Show Diagram.vi
+
+*Event type:* Request
+
+:imgpath: MAIN.lvlib_Show Diagram.vi.png
+image::{imgpath}[MAIN.lvlib:Show Diagram.vi]
+
+*Description:*
+++++
+This VI tells the Module to show its block diagram to facilitate troubleshooting (add probes, breakpoints, highlight execution, etc).
+
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:READ_ADC.vi
+
+*Event type:* Request And Wait For Reply
+
+:imgpath: MAIN.lvlib_READ_ADC.vi.png
+image::{imgpath}[MAIN.lvlib:READ_ADC.vi]
+
+*Description:*
+++++
+MANDA LEER EL ADC Y ESPERA A QUE EL MICRO RESPONDA LO ESPERADO
+_____
+Created using Delacor QMH Event Scripter 5.0.0.112.
+++++
+
+===== MAIN.lvlib:READ PIN.vi
+
+*Event type:* Request And Wait For Reply
+
+:imgpath: MAIN.lvlib_READ PIN.vi.png
+image::{imgpath}[MAIN.lvlib:READ PIN.vi]
+
+*Description:*
+++++
+SOLICITA EL ESTADO DEL PIN Y ESPERE A QUE EL MICROCONTROLADOR LO DEVUELVA
+_____
+Created using Delacor QMH Event Scripter 5.0.0.112.
+++++
+
+===== MAIN.lvlib:READ PORT.vi
+
+*Event type:* Request And Wait For Reply
+
+:imgpath: MAIN.lvlib_READ PORT.vi.png
+image::{imgpath}[MAIN.lvlib:READ PORT.vi]
+
+*Description:*
+++++
+LEE EL PUERTO COMPLETO DE ENTRADAS DE LOS BOTONES, Y LO PASARÁ A UN ARREGLO DE BOOLEANOS
+_____
+Created using Delacor QMH Event Scripter 5.0.0.112.
+++++
+
+===== MAIN.lvlib:WRITE PIN.vi
+
+*Event type:* Request And Wait For Reply
+
+:imgpath: MAIN.lvlib_WRITE PIN.vi.png
+image::{imgpath}[MAIN.lvlib:WRITE PIN.vi]
+
+*Description:*
+++++
+SELECCIONA QUE PIN Y QUE ESTADO ES EL QUIERE Y ESPERA A QUE EL MICRO LE REGRESE EL ESTADO DE LOS PINES
+_____
+Created using Delacor QMH Event Scripter 5.0.0.112.
+++++
+
+===== MAIN.lvlib:WRITE PORT.vi
+
+*Event type:* Request And Wait For Reply
+
+:imgpath: MAIN.lvlib_WRITE PORT.vi.png
+image::{imgpath}[MAIN.lvlib:WRITE PORT.vi]
+
+*Description:*
+++++
+SELECCIONA EL ESTADO DE LEDS QUE SE DESEA Y SE MANDA, REGRESA EL ESTADO ACTUAL DE LOS LEDS EN EL MICRO.
+_____
+Created using Delacor QMH Event Scripter 5.0.0.112.
+++++
+
+===== MAIN.lvlib:Module Did Init.vi
+
+*Event type:* Broadcast
+
+:imgpath: MAIN.lvlib_Module Did Init.vi.png
+image::{imgpath}[MAIN.lvlib:Module Did Init.vi]
+
+*Description:*
+++++
+Send the Module Did Init event to any VI registered to listen to this module's broadcast events.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:Status Updated.vi
+
+*Event type:* Broadcast
+
+:imgpath: MAIN.lvlib_Status Updated.vi.png
+image::{imgpath}[MAIN.lvlib:Status Updated.vi]
+
+*Description:*
+++++
+Send the Status Updated event to any VI registered to listen to events from the owning module.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:Error Reported.vi
+
+*Event type:* Broadcast
+
+:imgpath: MAIN.lvlib_Error Reported.vi.png
+image::{imgpath}[MAIN.lvlib:Error Reported.vi]
+
+*Description:*
+++++
+Send the Error Reported event to any VI registered to listen to events from the owning module.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:Module Did Stop.vi
+
+*Event type:* Broadcast
+
+:imgpath: MAIN.lvlib_Module Did Stop.vi.png
+image::{imgpath}[MAIN.lvlib:Module Did Stop.vi]
+
+*Description:*
+++++
+Send the Module Did Stop event to any VI registered to listen to this module's broadcast events.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+===== MAIN.lvlib:Update Module Execution Status.vi
+
+*Event type:* Broadcast
+
+:imgpath: MAIN.lvlib_Update Module Execution Status.vi.png
+image::{imgpath}[MAIN.lvlib:Update Module Execution Status.vi]
+
+*Description:*
+++++
+Fire the Get Module Execution Status request.
+_____
+Created using Delacor QMH Event Scripter 3.0.0.12.
+_____
+Based on Delacor QMH Project Template 5.0.0.82.
+++++
+
+=== Libraries
+
+This section describes libraries public VIs.
+
+=== Classes
+
+This section describes classes public VIs.
+
+==== NXP.lvclass
+
+
+==== CYPRESS.lvclass
+
+
+==== SERIAL DEVICE.lvclass
+
+===== SERIAL DEVICE.lvclass:Read MICROS.vi
+
+:imgpath: SERIAL DEVICE.lvclass_Read MICROS.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:Read MICROS.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:Write MICROS.vi
+
+:imgpath: SERIAL DEVICE.lvclass_Write MICROS.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:Write MICROS.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:Read VISA resource name.vi
+
+:imgpath: SERIAL DEVICE.lvclass_Read VISA resource name.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:Read VISA resource name.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:Write VISA resource name.vi
+
+:imgpath: SERIAL DEVICE.lvclass_Write VISA resource name.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:Write VISA resource name.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:READ PIN COM.vi
+
+:imgpath: SERIAL DEVICE.lvclass_READ PIN COM.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:READ PIN COM.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:READ_ADC_COM.vi
+
+:imgpath: SERIAL DEVICE.lvclass_READ_ADC_COM.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:READ_ADC_COM.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:READ_PORT_COMvi.vi
+
+:imgpath: SERIAL DEVICE.lvclass_READ_PORT_COMvi.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:READ_PORT_COMvi.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:WRITE PIN COM.vi
+
+:imgpath: SERIAL DEVICE.lvclass_WRITE PIN COM.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:WRITE PIN COM.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:WRITE PORT COMvi.vi
+
+:imgpath: SERIAL DEVICE.lvclass_WRITE PORT COMvi.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:WRITE PORT COMvi.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:CLOSE.vi
+
+:imgpath: SERIAL DEVICE.lvclass_CLOSE.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:CLOSE.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:INIT.vi
+
+:imgpath: SERIAL DEVICE.lvclass_INIT.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:INIT.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:BASECMD.vi
+
+:imgpath: SERIAL DEVICE.lvclass_BASECMD.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:BASECMD.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:SEND ADC.vi
+
+:imgpath: SERIAL DEVICE.lvclass_SEND ADC.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:SEND ADC.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:SEND READ PIN.vi
+
+:imgpath: SERIAL DEVICE.lvclass_SEND READ PIN.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:SEND READ PIN.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:SEND READ PORT.vi
+
+:imgpath: SERIAL DEVICE.lvclass_SEND READ PORT.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:SEND READ PORT.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:SEND WRITE PIN.vi
+
+:imgpath: SERIAL DEVICE.lvclass_SEND WRITE PIN.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:SEND WRITE PIN.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:SEND WRITE PORT.vi
+
+:imgpath: SERIAL DEVICE.lvclass_SEND WRITE PORT.vi.png
+image::{imgpath}[SERIAL DEVICE.lvclass:SEND WRITE PORT.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== SERIAL DEVICE.lvclass:CMD TEMP.vit
+
+:imgpath: SERIAL DEVICE.lvclass_CMD TEMP.vit.png
+image::{imgpath}[SERIAL DEVICE.lvclass:CMD TEMP.vit]
+
+*Description:*
+No description found (add content in VI description)
+
+==== SIMULADO.lvclass
+
+
+==== Delacor_lib_QMH_Cloneable Module Admin.lvclass
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Get Close Master Reference.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Get Close Master Reference.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Get Close Master Reference.vi]
+
+*Description:*
+++++
+Specifies whether or not the master VI reference used for launching clones should be closed by the Close Module VI when the cloneable module is shutting down.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Set Close Master Reference.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Set Close Master Reference.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Set Close Master Reference.vi]
+
+*Description:*
+++++
+Specifies whether or not the master VI reference used for launching clones should be closed by the Close Module VI when the cloneable module is shutting down.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Get First.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Get First.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Get First.vi]
+
+*Description:*
+++++
+Specifies whether or not this clone is the first one that was launched.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Set First.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Set First.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Set First.vi]
+
+*Description:*
+++++
+Specifies whether or not this clone is the first one that was launched.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Get Module ID.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Get Module ID.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Get Module ID.vi]
+
+*Description:*
+++++
+The numeric identifier of a running instance of a cloneable module. If the module is running as a singleton, the value will be 0.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Set Module ID.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Set Module ID.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Set Module ID.vi]
+
+*Description:*
+++++
+The numeric identifier of a running instance of a cloneable module. If the module is running as a singleton, the value will be 0.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Cloneable Admin Class--constant.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Cloneable Admin Class--constant.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Cloneable Admin Class--constant.vi]
+
+*Description:*
+++++
+
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Cloneable Admin Class--control.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Cloneable Admin Class--control.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Cloneable Admin Class--control.vi]
+
+*Description:*
+++++
+
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Reset.vi
+
+:imgpath: Delacor_lib_QMH_Cloneable Module Admin.lvclass_Delacor_lib_QMH_Reset.vi.png
+image::{imgpath}[Delacor_lib_QMH_Cloneable Module Admin.lvclass:Delacor_lib_QMH_Reset.vi]
+
+*Description:*
+++++
+
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+==== Delacor_lib_QMH_Module Admin.lvclass
+
+===== Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Get External Launch.vi
+
+:imgpath: Delacor_lib_QMH_Module Admin.lvclass_Delacor_lib_QMH_Get External Launch.vi.png
+image::{imgpath}[Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Get External Launch.vi]
+
+*Description:*
+++++
+
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Set External Launch.vi
+
+:imgpath: Delacor_lib_QMH_Module Admin.lvclass_Delacor_lib_QMH_Set External Launch.vi.png
+image::{imgpath}[Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Set External Launch.vi]
+
+*Description:*
+++++
+
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Admin Class--constant.vi
+
+:imgpath: Delacor_lib_QMH_Module Admin.lvclass_Delacor_lib_QMH_Admin Class--constant.vi.png
+image::{imgpath}[Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Admin Class--constant.vi]
+
+*Description:*
+++++
+
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Admin Class--control.vi
+
+:imgpath: Delacor_lib_QMH_Module Admin.lvclass_Delacor_lib_QMH_Admin Class--control.vi.png
+image::{imgpath}[Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Admin Class--control.vi]
+
+*Description:*
+++++
+
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Reset.vi
+
+:imgpath: Delacor_lib_QMH_Module Admin.lvclass_Delacor_lib_QMH_Reset.vi.png
+image::{imgpath}[Delacor_lib_QMH_Module Admin.lvclass:Delacor_lib_QMH_Reset.vi]
+
+*Description:*
+++++
+
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+==== Delacor_lib_QMH_Message Queue.lvclass
+
+===== Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Check Loop Error.vi
+
+:imgpath: Delacor_lib_QMH_Message Queue.lvclass_Delacor_lib_QMH_Check Loop Error.vi.png
+image::{imgpath}[Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Check Loop Error.vi]
+
+*Description:*
+++++
+Check the 'error to process' to see if its code value matches any of the values in the 'Ignore Errors' array. If so, do nothing. If not, send an "Error" message containing the error data to the Message Handling Loop for further processing.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Error Handler - Event Handling Loop.vi
+
+:imgpath: Delacor_lib_QMH_Message Queue.lvclass_Delacor_lib_QMH_Error Handler - Event Handling Loop.vi.png
+image::{imgpath}[Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Error Handler - Event Handling Loop.vi]
+
+*Description:*
+++++
+Process an error that occurred in the Event Handling Loop, either by ignoring it, or generating an "Error" message.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Error Handler - Message Handling Loop.vi
+
+:imgpath: Delacor_lib_QMH_Message Queue.lvclass_Delacor_lib_QMH_Error Handler - Message Handling Loop.vi.png
+image::{imgpath}[Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Error Handler - Message Handling Loop.vi]
+
+*Description:*
+++++
+Process an error that occurred in the Message Handling Loop, either by ignoring it, or generating an "Error" message.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Create Message Queue.vi
+
+:imgpath: Delacor_lib_QMH_Message Queue.lvclass_Delacor_lib_QMH_Create Message Queue.vi.png
+image::{imgpath}[Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Create Message Queue.vi]
+
+*Description:*
+++++
+This VI creates and initializes the message queue for a QMH Module. 
+If the message needs to be different for the given module, then create a child class of Message Queue and override the appropriate methods.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Dequeue Message.vi
+
+:imgpath: Delacor_lib_QMH_Message Queue.lvclass_Delacor_lib_QMH_Dequeue Message.vi.png
+image::{imgpath}[Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Dequeue Message.vi]
+
+*Description:*
+++++
+This VI pulls messages off the Message Queue.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Flush Messages.vi
+
+:imgpath: Delacor_lib_QMH_Message Queue.lvclass_Delacor_lib_QMH_Flush Messages.vi.png
+image::{imgpath}[Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Flush Messages.vi]
+
+*Description:*
+++++
+Flush the message queue.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+===== Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Release Message Queue.vi
+
+:imgpath: Delacor_lib_QMH_Message Queue.lvclass_Delacor_lib_QMH_Release Message Queue.vi.png
+image::{imgpath}[Delacor_lib_QMH_Message Queue.lvclass:Delacor_lib_QMH_Release Message Queue.vi]
+
+*Description:*
+++++
+Release the message queue.
+____
+Delacor QMH Palette 5.0.0.7
+Copyright (c) 2020, Delacor
+++++
+
+== Legal Information
+
+=== Document creation
+
+This document has been generated using the following tools.
+
+==== Antidoc
+
+Project website: https://wovalab.gitlab.io/open-source/labview-doc-generator/[Antidoc] 
+
+Maintainer website: https://wovalab.com[Wovalab] 
+
+BSD 3-Clause License
+
+Copyright (C) 2019, Wovalab,
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+==== Asciidoc for LabVIEW(TM)
+
+Project website: https://wovalab.gitlab.io/open-source/asciidoc-toolkit/[Asciidoc toolkit] 
+
+Maintainer website: https://wovalab.com[Wovalab] 
+
+BSD 3-Clause License
+
+Copyright (C) 2019, Wovalab,
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+==== Graph Builder
+
+Project website: https://gitlab.com/cgambini/graph-builder[Graph Builder]
+
+BSD 3-Clause License
+
+Copyright (c) 2020, Cyril GAMBINI
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+=== Product used in the project
+
+The documented project has been developed with the following products.
+
+==== DQMH(R)
+
+Copyright (C) 2015-2020 by Delacor, LLC. All Rights Reserved.
+
+Find more details on https://delacor.com/products/dqmh/[Delacor] website
+
